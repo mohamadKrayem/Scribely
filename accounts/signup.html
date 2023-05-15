@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Signup Form</title>
+   <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+   <link rel="stylesheet" href="../assets/m-style/style.css">
+   <link rel="stylesheet" href="../assets/m-style/signup.css">
+</head>
+
+<body>
+   <div class="d-flex align-items-center justify-content-evenly container">
+
+      <img src="../assets/img/pricing-free.png" class="w-5" alt="">
+      <div>
+         <h2 class="title">Create new account</h2>
+         <form id="signup-form" action="signup.php" method="POST">
+            <div class="form-group mb-2">
+               <input type="text" class="form-control" id="username" placeholder="username" name="username" required>
+            </div>
+            <div class="form-group mb-2">
+               <input type="email" class="form-control" id="email" name="email" placeholder="email" required>
+            </div>
+            <div class="form-group mb-3">
+               <input type="password" class="form-control" id="password" name="password" placeholder="password"
+                  required>
+            </div>
+            <button type="submit" class="btn w-3 btn-primary btn-block">Signup</button>
+         </form>
+         <div id="response-message"></div>
+      </div>
+
+   </div>
+
+   <div id="response-message"></div>
+
+   <script src="../assets/jquery/jquery-3.3.1.min.js"></script>
+   <script src="../assets/popper/popper.min.js"></script>
+   <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+   <script>
+      $(document).ready(function () {
+         // Handle form submission
+         $("#signup-form").submit(function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            $.post($(this).attr("action"), $(this).serialize(), function (response) {
+               // Display the response message
+               $("#response-message").text(response);
+            });
+         });
+      });
+   </script>
+
+</body>
+
+</html>

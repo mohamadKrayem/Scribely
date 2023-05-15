@@ -1,0 +1,61 @@
+body {
+   background-image: url(../assets/img/hero-bg.png);
+   padding: auto;
+   height: 100vh;
+}
+
+.title{
+   color: #012970;
+   font-size: 30px;
+   font-weight: 700;
+}
+
+#signup-form {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+}
+
+.container {
+   max-width: 900px;
+   height: 80%;
+   margin-top: 5%;
+   margin-bottom: 5%;
+   padding: 40px;
+   background-color: #ffffff;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   border-radius: 5px;
+}
+
+h2 {
+   text-align: center;
+   margin-bottom: 30px;
+}
+
+.form-control {
+   border-radius: 20px;
+   /*color: #4154f1;*/
+   color: #012970;
+}
+
+.btn-primary {
+   border-radius: 20px;
+   background-color: #4154f1;
+   border: none;
+   width: 200px;
+}
+
+.form-group {
+   width: 100%;
+}
+
+.btn-primary:hover {
+   background-color: #4154f1;
+}
+
+.alert {
+   border-radius: 20px;
+   margin-top: 20px;
+}
