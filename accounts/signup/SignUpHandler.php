@@ -1,11 +1,8 @@
+
 <?php
-class SignUpHandler
+include "../auth/MainAuth.php";
+class SignUpHandler extends MainAuth
 {
-   private $db;
-   private $response;
-   private $username;
-   private $email;
-   private $password;
 
    public function __construct($db, $username, $email, $password)
    {
@@ -37,44 +34,6 @@ class SignUpHandler
       }
 
       return $this->response;
-   }
-
-   private function usernameExists()
-   {
-      $stmt = $this->db->prepare("SELECT * FROM User WHERE username = ?");
-      $stmt->bind_param("s", $this->username);
-      $result = $stmt->execute();
-      $stmt->store_result();
-      if ($stmt->num_rows > 0) {
-         $this->response = array(
-            "success" => false,
-            "case" => "conflict",
-            "message" => "Username already exists!",
-            "code"=>409,
-         );
-         $stmt->close();
-         return true;
-      }
-      return false;
-   }
-
-   private function emailExists()
-   {
-      $stmt = $this->db->prepare("SELECT * FROM User WHERE email = ?");
-      $stmt->bind_param("s", $this->email);
-      $stmt->execute();
-      $stmt->store_result();
-      if ($stmt->num_rows > 0) {
-         $this->response = array(
-            "success" => false,
-            "case" => "conflict",
-            "message" => "Email already exists!",
-            "code"=>409,
-         );
-         $stmt->close();
-         return true;
-      }
-      return false;
    }
 
    private function saveUser()

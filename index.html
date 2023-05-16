@@ -17,7 +17,7 @@
     <script>
       function sessionCheck() {
         $.ajax({
-          url: "./accounts/sessionCheck.php",
+          url: "./accounts/auth/sessionCheck.php",
           type: "GET",
           success: function (data) {
             data = JSON.parse(data);
@@ -38,7 +38,7 @@
       function onClickLogout(event) {
         event.preventDefault();
         $.ajax({
-          url: "./accounts/logout.php",
+          url: "./accounts/auth/logout.php",
           type: "GET",
           success: function (data) {
             data = JSON.parse(data);

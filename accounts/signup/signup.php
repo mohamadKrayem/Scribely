@@ -1,8 +1,8 @@
 <?php
 
-include '../php/session.php';
-include '../php/db.php';
-include 'SignUpHandler.php';
+include '../../php/session.php';
+include '../../php/db.php';
+include './SignUpHandler.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    $password = $_POST['password'];
@@ -10,12 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    $email = $_POST['email'];
 
    $signupHandler = new SignUpHandler($mysqli, $username, $email, $password);
-   $message = $signupHandler->signUp($username, $email, $password);
+   $message = $signupHandler->signUp();
 
    header("Content-Type: application/json");
    if ($message['success']) {
       $_SESSION['username'] = $username;
       $_SESSION['password'] = $password;
+      $_SESSION['email'] = $email;
    }
    http_response_code($message['code']);
    echo json_encode($message);

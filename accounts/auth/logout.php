@@ -1,5 +1,5 @@
 <?php
-include "../php/session.php";
+include "../../php/session.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
    session_destroy();
