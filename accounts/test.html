@@ -1,150 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signup Form</title>
-  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-  <style>
-    body {
-      background-color: #f8f9fa;
-    }
-    
-    .container {
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 40px;
-      background-color: #ffffff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-    }
-    
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    
-    .form-control {
-      border-radius: 20px;
-    }
-    
-    .btn-primary {
-      border-radius: 20px;
-      background-color: #007bff;
-      border: none;
-    }
-    
-    .btn-primary:hover {
-      background-color: #0056b3;
-    }
-    
-    .alert {
-      border-radius: 20px;
-      margin-top: 20px;
-    }
-  </style>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Signup Form</title>
+   <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+   <link rel="stylesheet" href="../assets/bootstrap-icons/bootstrap-icons.css">
+   <style>
+      body {
+         background-color: #f8f9fa;
+      }
+
+      .container {
+         max-width: 500px;
+         margin: 0 auto;
+         padding: 40px;
+         background-color: #ffffff;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         border-radius: 5px;
+      }
+
+      h2 {
+         text-align: center;
+         margin-bottom: 30px;
+      }
+
+      .form-control {
+         border-radius: 20px;
+      }
+
+      .btn-primary {
+         border-radius: 20px;
+         background-color: #007bff;
+         border: none;
+      }
+
+      .btn-primary:hover {
+         background-color: #0056b3;
+      }
+
+      .alert {
+         border-radius: 20px;
+         margin-top: 20px;
+      }
+
+
+
+
+      .post-card:hover {
+         transform: scale(1.021);
+      }
+
+      .post-card:active {
+         transform: scale(0.95) rotateZ(1.1deg);
+      }
+
+
+      .post-card {
+         width: 320px;
+         background: lightgrey;
+         /*background-color: rgb(24 27 32);*/
+         background-color: #4154f1;
+         border: 1px solid rgb(84 90 106);
+         border-radius: 20px;
+         display: flex;
+         flex-direction: column;
+         padding: 10px 20px;
+         box-shadow: rgba(0, 0, 0, 0.4) 10px 20px 30px, rgba(0, 0, 0, 0.3) 10px 1px 53px 3px, rgba(1, 0, 0, 0.2) 0px -1px 3px inset;
+         transition: all 0.3s;
+         user-select: none;
+      }
+
+      .avatar {
+         height: 35px;
+         width: 35px;
+         border-radius: 50%;
+         background-color: blueviolet;
+         background-image: linear-gradient(to top left, blueviolet, rgb(73, 31, 112));
+      }
+
+      .post-title {
+         font-size: 20px;
+         line-height: 22px;
+         font-weight: 600;
+         margin-top: 10px;
+         color: #fff;
+         text-decoration: none;
+         transition: all .15s ease-in;
+      }
+
+      .post-title:hover {
+         color: #012970;
+      }
+
+      .datetime {
+         font-size: 12px;
+         color: rgb(168 179 207);
+         margin: 10px 0;
+      }
+
+      .image-preview {
+         flex: 1;
+         min-height: 150px;
+         width: 100%;
+         border-radius: 20px;
+         background-color: blueviolet;
+         background-image: linear-gradient(to top left, blueviolet, rgb(73, 31, 112));
+         margin-bottom: 4px;
+      }
+
+      .views-like {
+         display: flex;
+         justify-content: space-around;
+         align-items: center;
+         padding: 2px 0;
+      }
+
+      .views-like i {
+         cursor: pointer;
+         height: 40px;
+         width: 30px;
+         padding: 0 3px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-weight: 900;
+         border-radius: 10px;
+         background-color: transparent;
+         transition: all .15s ease;
+      }
+
+      .views-like i:hover {
+         background-color: rgba(137, 43, 226, 0.096);
+      }
+
+      .views-like i,
+      span {
+         color: rgb(255, 255, 255);
+         margin-right: 2px;
+      }
+   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h2>Signup Form</h2>
-    <form id="signup-form" action="signup.php" method="POST">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-      </div>
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text" class="form-control" id="firstName" name="firstName" required>
-      </div>
-      <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" id="lastName" name="lastName" required>
-      </div>
-      <div class="form-group">
-        <label for="location">Location</label>
-        <input type="text" class="form-control" id="location" name="location">
-      </div>
-      <div class="form-group">
-        <label for="bio">Bio</label>
-        <textarea class="form-control" id="bio" name="bio"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="github">GitHub</label>
-        <input type="text" class="form-control" id="github" name="github">
-      </div>
-      <div class="form-group">
-        <label for="linkedin">LinkedIn</label>
-        <input type="text" class="form-control" id="linkedin" name="linkedin">
-      </div>
-      <div class="form-group">
-        <label for="twitter">Twitter</label>
-        <input type="text" class="form-control" id="twitter" name="twitter">
-      </div>
-      <div class="form-group">
-        <label for="website">Website</label>
-        <input type="text" class="form-control" id="website" name="website">
-      </div>
-      <div class="form-group">
-        <label for="facebook">Facebook</label>
-        <input type="text" class="form-control" id="facebook" name="facebook">
-      </div>
-      <div class="form-group">
-        <label for="instagram">Instagram</label>
-        <input type="text" class="form-control" id="instagram" name="instagram">
-      </div>
-      <button type="submit" class="btn btn-primary btn-block">Signup</button>
-    </form>
-  </div>
+   <div class="container">
+      <h2>Signup Form</h2>
+      <form id="signup-form" action="signup.php" method="POST">
+         <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+         </div>
+         <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+         </div>
+         <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+         </div>
+         <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" required>
+         </div>
+         <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" required>
+         </div>
+         <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location">
+         </div>
+         <div class="form-group">
+            <label for="bio">Bio</label>
+            <textarea class="form-control" id="bio" name="bio"></textarea>
+         </div>
+         <div class="form-group">
+            <label for="github">GitHub</label>
+            <input type="text" class="form-control" id="github" name="github">
+         </div>
+         <div class="form-group">
+            <label for="linkedin">LinkedIn</label>
+            <input type="text" class="form-control" id="linkedin" name="linkedin">
+         </div>
+         <div class="form-group">
+            <label for="twitter">Twitter</label>
+            <input type="text" class="form-control" id="twitter" name="twitter">
+         </div>
+         <div class="form-group">
+            <label for="website">Website</label>
+            <input type="text" class="form-control" id="website" name="website">
+         </div>
+         <div class="form-group">
+            <label for="facebook">Facebook</label>
+            <input type="text" class="form-control" id="facebook" name="facebook">
+         </div>
+         <div class="form-group">
+            <label for="instagram">Instagram</label>
+            <input type="text" class="form-control" id="instagram" name="instagram">
+         </div>
+         <button type="submit" class="btn btn-primary btn-block">Signup</button>
+      </form>
+   </div>
 
-  <script src="../assets/jquery/jquery-3.3.1.min.js"></script>
-  <script src="../assets/popper/popper.min.js"></script>
-  <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+   <script src="../assets/jquery/jquery-3.3.1.min.js"></script>
+   <script src="../assets/popper/popper.min.js"></script>
+   <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 
-  <script>
-    $(document).ready(function() {
-      // Handle form submission
-      $("#signup-form").submit(function(event) {
-        event.preventDefault(); // Prevent default form submission
+   <script>
+      $(document).ready(function () {
+         // Handle form submission
+         $("#signup-form").submit(function (event) {
+            event.preventDefault(); // Prevent default form submission
 
-        var form = $(this);
-        var url = form.attr("action");
-        var formData = form.serialize(); // Serialize form data
+            var form = $(this);
+            var url = form.attr("action");
+            var formData = form.serialize(); // Serialize form data
 
-        // Perform an AJAX post request
-        $.ajax({
-          type: "POST",
-          url: url,
-          data: formData,
-          dataType: "json",
-          success: function(response) {
-            // Show success message
-            $("#response-message").html(
-              "<div class='alert alert-success'>" +
-              response.message +
-              "</div>"
-            );
-            form.trigger("reset"); // Clear the form fields
-          },
-          error: function(xhr, status, error) {
-            // Show error message
-            var errorMessage = xhr.responseJSON.message;
-            $("#response-message").html(
-              "<div class='alert alert-danger'>" +
-              errorMessage +
-              "</div>"
-            );
-          }
-        });
+            // Perform an AJAX post request
+            $.ajax({
+               type: "POST",
+               url: url,
+               data: formData,
+               dataType: "json",
+               success: function (response) {
+                  // Show success message
+                  $("#response-message").html(
+                     "<div class='alert alert-success'>" +
+                     response.message +
+                     "</div>"
+                  );
+                  form.trigger("reset"); // Clear the form fields
+               },
+               error: function (xhr, status, error) {
+                  // Show error message
+                  var errorMessage = xhr.responseJSON.message;
+                  $("#response-message").html(
+                     "<div class='alert alert-danger'>" +
+                     errorMessage +
+                     "</div>"
+                  );
+               }
+            });
+         });
       });
-    });
-  </script>
+   </script>
+   <div class="post-card">
+      <div class="avatar">
+         <img class="avatar" src="https://avatars.githubusercontent.com/u/47269261?v=4" alt="">
+      </div>
+      <a class="post-title" href="#">7 Tools for Faster Development in React</a>
+      <span class="datetime">#Rust</span>
+      <div class="image-preview">
+         <!-- <img src="" class="article-image" alt=""> -->
+      </div>
+      <div class="views-like">
+         <div class="views d-flex align-items-center">
+            <i class="bi bi-eye"></i>
+            <span>0</span>
+         </div>
+         <div class="like d-flex align-items-center">
+            <i class="bi bi-heart"></i>
+            <span>0</span>
+         </div>
+      </div>
+   </div>
 </body>
+
 </html>

@@ -1,7 +1,7 @@
 <?php
 include '../../php/db.php';
 include '../../php/session.php';
-include 'SignInHandler.php';
+include './SignInHandler.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST")  {
    $username = $_POST['username'];   

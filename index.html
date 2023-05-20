@@ -1,291 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link
+
+<head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+   <link
       href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-      rel="stylesheet"
-    />
-    <link href="assets/m-style/style.css" rel="stylesheet" />
-    <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+      rel="stylesheet" />
+   <link href="assets/m-style/style.css" rel="stylesheet" />
+   <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+   <link rel="stylesheet" href="assets/m-style/cards.css">
+   <title>Scribely</title>
+   <script src="assets/jquery/jquery-3.3.1.min.js"></script>
+   <script src="./index.js"></script>
+</head>
 
-    <title>Scribely</title>
-    <script src="assets/jquery/jquery-3.3.1.min.js"></script>
-    <script>
-      function sessionCheck() {
-        $.ajax({
-          url: "./accounts/auth/sessionCheck.php",
-          type: "GET",
-          success: function (data) {
-            data = JSON.parse(data);
-            $(".sessionEmpty").hide();
-            $(".sessionFull").show();
-            $(".sessionFull").append(`<span>${data.username}</span>`);
-            $("#logout").show();
-            $("#logout").click(onClickLogout);
-          },
-          error: function (data) {
-            $(".sessionEmpty").show();
-            $(".sessionFull").hide();
-            console.log("should be deleted");
-            $("#logout").hide();
-          },
-        });
-      }
-      function onClickLogout(event) {
-        event.preventDefault();
-        $.ajax({
-          url: "./accounts/auth/logout.php",
-          type: "GET",
-          success: function (data) {
-            data = JSON.parse(data);
-            console.log(data.success);
-            if (data.success == true) {
-              location.reload();
-            }
-          },
-        });
-      }
-      $(document).ready(sessionCheck);
-    </script>
-  </head>
-
-  <body class="">
-    <header id="header" class="mx-5 header fixed-top header-scrolled">
-      <nav
-        class="navbar navbar-expand-xl navbar-light bg-transparent py-3 px-5"
-      >
-        <div class="container-fluid">
-          <a class="navbar-brand title" id="title" href="#">Scribely</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto d-flex justify-content-between">
-              <li class="nav-item px-3">
-                <a class="nav-link" href="#">Home</a>
-              </li>
-              <li class="nav-item px-3">
-                <a class="nav-link" href="#">Articles</a>
-              </li>
-              <li class="nav-item px-3">
-                <a class="nav-link" href="#">Write Article</a>
-              </li>
-              <li class="nav-item px-3">
-                <a class="nav-link" href="#">Authors</a>
-              </li>
-              <li class="nav-item pr-3 pl-1">
-                <a class="nav-link sessionEmpty" href="./accounts/signup.html"
-                  >Login/Register</a
-                >
-                <a class="nav-link sessionFull" href="#"
-                  ><i class="bi bi-person-fill"></i
-                ></a>
-              </li>
-              <li class="nav-item pr-3 pl-1" id="logout">
-                <a class="nav-link" href="#"
-                  ><i class="bi bi-box-arrow-right"></i
-                ></a>
-              </li>
-            </ul>
-          </div>
-        </div>
+<body class="">
+   <header id="header" class=" header fixed-top header-scrolled">
+      <nav class="navbar mr-lg-4 ml-lg-4 navbar-expand-xl navbar-light py-2 px-lg-5">
+         <div class="container-fluid">
+            <a class="navbar-brand title" href="#">Scribely</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav ms-auto d-flex justify-content-between">
+                  <li class="nav-item px-3">
+                     <a class="nav-link" href="#">Home</a>
+                  </li>
+                  <li class="nav-item px-3">
+                     <a class="nav-link" href="#">Articles</a>
+                  </li>
+                  <li class="nav-item px-3">
+                     <a class="nav-link" href="accounts/new-article.html">Write Article</a>
+                  </li>
+                  <li class="nav-item px-3">
+                     <a class="nav-link" href="#">Authors</a>
+                  </li>
+                  <li class="nav-item pr-3 pl-1">
+                     <a class="nav-link sessionEmpty" href="./accounts/signup.html">Login/Register</a>
+                     <a class="nav-link sessionFull" href="#"><i class="bi bi-person-fill"></i></a>
+                  </li>
+                  <li class="nav-item pr-3 pl-1" id="logout">
+                     <a class="nav-link" href="#"><i class="bi bi-box-arrow-right"></i></a>
+                  </li>
+               </ul>
+            </div>
+         </div>
       </nav>
-    </header>
+   </header>
 
-    <!-- Hero Section -->
-
-    <!-- <section class="hero h-full text-white mt-5 text-center py-5">
-      <div class="container">
-         <h1 class="display-4 mt-5">Welcome to Scribely</h1>
-         <p class="lead">Discover and share compelling articles</p>
-         <a href="#" class="btn btn-light">Get Started</a>
-      </div>
-   </section> -->
-
-    <section
-      class="hero py-5 h-full d-flex align-items-center justify-content-center"
-    >
+   <section class="hero py-5 h-full d-flex align-items-center justify-content-center">
       <div class="container" id="container-hero">
-        <div class="align-items-center row">
-          <div class="col-md-6">
-            <h1 class="display-4 fs-1 fw-bold mb-4" id="title">
-              Welcome to Scribely
-            </h1>
-            <p class="lead fs-4 mb-4">Discover and share compelling articles</p>
-            <a
-              href="#"
-              id="get-started"
-              class="btn btn-lg px-4 py-2 fw-bold fs-5 rounded-pill shadow-sm"
-              >Get Started</a
-            >
-          </div>
-          <div class="col-md-6">
-            <img
-              src="assets/img/hero-img.png"
-              class="img-fluid"
-              alt="Hero Image"
-            />
-          </div>
-        </div>
+         <div class="align-items-center row">
+            <div class="col-md-6">
+               <h1 class="display-4 fs-1 fw-bold mb-4" id="title">
+                  Welcome to Scribely
+               </h1>
+               <p class="lead fs-4 mb-4">Discover and share compelling articles</p>
+               <a href="#" id="get-started" class="btn btn-lg px-4 py-2 fw-bold fs-5 rounded-pill shadow-sm">Get
+                  Started
+               </a>
+            </div>
+            <div class="col-md-6">
+               <img src="assets/img/hero-img.png" class="img-fluid" alt="Hero Image" />
+            </div>
+         </div>
       </div>
-    </section>
+   </section>
 
-    <!-- Featured Articles Section -->
-    <section class="featured-articles mt-5 py-5">
+   <!-- Featured Articles Section -->
+   <section class="featured-articles mt-5 py-5">
       <div class="container">
-        <h2 class="text-center mb-4">Featured Articles</h2>
-        <div class="row">
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="path/to/article-image.jpg"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Article Title</h5>
-                <p class="card-text">Brief description of the article.</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-              </div>
+         <h2 class="text-center mb-4">Featured Articles</h2>
+         <div class="
+         row justify-content-center align-items-center flex-column-reverse flex-md-row flex-wrap mb-5 mt-5 px-5 px-md-0 px-lg-5 px-xl-0 px-xxl-5 
+         " id="articles-row">
+            <div class="post-card">
+               <div class="avatar">
+                  <img class="avatar" src="https://avatars.githubusercontent.com/u/47269261?v=4" alt="">
+               </div>
+               <a class="post-title" href="#" id="post-title" onclick="onClickCard()">7 Tools for Faster Development in React</a>
+               <span class="datetime">#Rust</span>
+               <div class="image-preview">
+                  <!-- <img src="" class="article-image" alt=""> -->
+               </div>
+               <div class="views-like">
+                  <div class="like d-flex align-items-center">
+                     <i class="bi bi-heart-fill"></i>
+                     <span>0</span>
+                  </div>
+                  <div class="views d-flex align-items-center">
+                     <i class="bi bi-eye-fill"></i>
+                     <span>0</span>
+                  </div>
+               </div>
             </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="path/to/article-image.jpg"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Article Title</h5>
-                <p class="card-text">Brief description of the article.</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="path/to/article-image.jpg"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Article Title</h5>
-                <p class="card-text">Brief description of the article.</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="path/to/article-image.jpg"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Article Title</h5>
-                <p class="card-text">Brief description of the article.</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="path/to/article-image.jpg"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Article Title</h5>
-                <p class="card-text">Brief description of the article.</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="path/to/article-image.jpg"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Article Title</h5>
-                <p class="card-text">Brief description of the article.</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="path/to/article-image.jpg"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Article Title</h5>
-                <p class="card-text">Brief description of the article.</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="path/to/article-image.jpg"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Article Title</h5>
-                <p class="card-text">Brief description of the article.</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="card">
-              <img
-                src="path/to/article-image.jpg"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Article Title</h5>
-                <p class="card-text">Brief description of the article.</p>
-                <a href="#" class="btn btn-primary">Read More</a>
-              </div>
-            </div>
-          </div>
-          <!-- Repeat the above card structure for other featured articles -->
-        </div>
+         </div>
       </div>
-    </section>
+   </section>
 
-    <!-- Footer Section -->
-    <footer class="footer bg-light py-4">
+   <!-- Footer Section -->
+   <footer class="footer bg-light py-4">
       <div class="container text-center">
-        <p>&copy; 2023 Scribely. All rights reserved.</p>
+         <p>&copy; 2023 Scribely. All rights reserved.</p>
       </div>
-    </footer>
+   </footer>
 
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/popper/popper.min.js"></script>
-  </body>
+   <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="assets/popper/popper.min.js"></script>
+</body>
+
 </html>

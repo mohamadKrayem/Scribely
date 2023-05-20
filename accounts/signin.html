@@ -8,6 +8,8 @@
    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
    <link rel="stylesheet" href="../assets/m-style/style.css">
    <link rel="stylesheet" href="../assets/m-style/signup.css">
+   <script src="../assets/jquery/jquery-3.3.1.min.js"></script>
+   <script src="./signin/signin.js"></script>
 </head>
 
 <body>
@@ -32,43 +34,8 @@
 
    <div id="response-message"></div>
 
-   <script src="../assets/jquery/jquery-3.3.1.min.js"></script>
    <script src="../assets/popper/popper.min.js"></script>
    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-   <script>
-      $(document).ready(function () {
-         // Handle form submission
-         $("#signin-form").submit(function (event) {
-            event.preventDefault(); // Prevent the form from submitting normally
-            $.ajax({
-               url: "./signin/signin.php",
-               type: "POST",
-               data: $(this).serialize(),
-               success: function (data) {
-                  console.log(data)
-                  if (data.success == true) {
-                     $("#response-message").html(
-                        '<div class="alert alert-success" role="alert">' + data.message + '</div>'
-                     );
-                     setTimeout(() => {
-                        window.location.href = "../index.html";
-                     }, 1000);
-                  } else {
-                     $("#response-message").html(
-                        '<div class="alert alert-danger" role="alert">' + data.message + '</div>'
-                     );
-                  }
-               },
-               error: function (data) {
-                  console.log(data)
-                  $("#response-message").html(
-                     '<div class="alert alert-danger" role="alert">' + data.message + '</div>'
-                  );
-               }
-            })
-         });
-      });
-   </script>
 
 </body>
 

@@ -63,7 +63,7 @@ class SignInHandler extends MainAuth
    public function getUserData()
    {
       $stmt = $this->db->prepare("SELECT `user_id`, `username`, `email`, 
-      `created_at`, `full_name`, `bio`, `profile_image`, `website`, `location`, 
+      `created_at`, `full_name`, `bio`, `profile_pic`, `website`, `location`, 
       `twitter`, `facebook`, `instagram`, `linkedin`, `github` 
       FROM `User` WHERE username = ? ");
 

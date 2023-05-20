@@ -37,9 +37,8 @@ body {
 }
 
 nav {
-   background-color: transparent;
-   /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
    padding: 20px 0;
+   /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
    top: 0;
    width: 100%;
    z-index: 999;
@@ -65,3 +64,26 @@ nav {
    font-size: 20px;
    font-weight: 700;
 }
+
+
+#header {
+   /* width: 100%; */
+   /* background-color: rgba(255, 255, 255, 0.9999); */
+   background-color: rgb(255, 255, 255);
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.article-img {
+   height: 100px;
+   width: 150px;
+   object-fit: center;
+   border-radius: 20px;
+}
+
+.profile-img {
+   height: 35px;
+   width: 35px;
+   border-radius: 50%;
+}
+

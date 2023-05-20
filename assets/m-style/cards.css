@@ -1,0 +1,109 @@
+#articles-row {
+   gap: 1rem;
+}
+
+.post-card:hover {
+   transform: scale(1.021);
+}
+
+.post-card:active {
+   transform: scale(0.95) rotateZ(1.1deg);
+}
+
+
+.post-card {
+   width: 320px;
+   min-height: 347px;
+   background: lightgrey;
+   /*background-color: rgb(24 27 32);*/
+   /* background-color: #4154f1; */
+   background-color: #fff;
+   /* border: 1px solid rgb(84 90 106); */
+   border-radius: 20px;
+   display: flex;
+   flex-direction: column;
+   padding: 10px 20px;
+   /* decrease the box shadow  */
+   box-shadow: rgba(0, 0, 0, 0.2) 5px 10px 20px, rgba(0, 0, 0, 0.2) 5px 1px 30px 3px, rgba(0.5, 0, 0, 0.2) 0px -1px 3px inset;
+   transition: all 0.3s;
+   user-select: none;
+}
+
+.avatar {
+   height: 35px;
+   width: 35px;
+   border-radius: 50%;
+   background-color: blueviolet;
+   background-image: linear-gradient(to top left, blueviolet, rgb(73, 31, 112));
+}
+
+.post-title {
+   font-size: 20px;
+   line-height: 22px;
+   font-weight: 600;
+   margin-top: 10px;
+   /* color: #fff; */
+   color: black;
+   text-decoration: none;
+   transition: all .15s ease-in;
+}
+
+.post-title:hover {
+   color: #012970;
+}
+
+.datetime {
+   font-size: 14px;
+   font-weight: 700;
+   color: rgb(168 179 207);
+   margin: 10px 0;
+}
+
+.image-preview {
+   flex: 1;
+   min-height: 150px;
+   width: 100%;
+   border-radius: 20px;
+   background-color: blueviolet;
+   /* background-image: linear-gradient(to top left, blueviolet, rgb(73, 31, 112)); */
+   margin-bottom: 4px;
+   background-size: cover;
+}
+
+.article-image {
+   height: 100px; 
+   width: 150px;
+   object-fit: center;
+   border-radius: 20px;
+}
+
+.views-like {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   padding: 2px 0;
+}
+
+.views-like i {
+   cursor: pointer;
+   height: 40px;
+   width: 30px;
+   padding: 0 3px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: 900;
+   border-radius: 10px;
+   background-color: transparent;
+   transition: all .15s ease;
+}
+
+.views-like i:hover {
+   background-color: rgba(137, 43, 226, 0.2);
+}
+
+.views-like i,
+span {
+   color: #012970;
+   margin-right: 2px;
+}

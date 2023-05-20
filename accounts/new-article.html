@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+   <title>Write Article</title>
+   <link rel="stylesheet" href="../assets/m-style/style.css">
+
+   <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet" />
+   <link href="../assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+   <script src="../assets/jquery/jquery-3.3.1.min.js"></script>
+   <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+   <script src="./articles/newArticle.js"></script>
+</head>
+
+<body>
+   <header id="header" class=" header fixed-top header-scrolled">
+      <nav class="navbar mr-lg-4 ml-lg-4 navbar-expand-xl navbar-light py-2 px-lg-5">
+         <div class="container-fluid">
+            <a class="navbar-brand title" class="title" href="#">Scribely</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+               <ul class="navbar-nav ms-auto d-flex justify-content-between">
+                  <li class="nav-item px-3">
+                     <a class="nav-link" href="../index.html">Home</a>
+                  </li>
+                  <li class="nav-item px-3">
+                     <a class="nav-link" href="#">Articles</a>
+                  </li>
+                  <li class="nav-item px-3">
+                     <a class="nav-link" href="#">Authors</a>
+                  </li>
+                  <li class="nav-item pr-3 pl-1">
+                     <a class="nav-link sessionEmpty" href="./signup.html">Login/Register</a>
+                     <a class="nav-link sessionFull" href="#"><i class="bi bi-person-fill"></i></a>
+                  </li>
+                  <li class="nav-item pr-3 pl-1" id="logout">
+                     <a class="nav-link" href="#"><i class="bi bi-box-arrow-right"></i></a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+   </header>
+   <main class="hero">
+      <div class="container">
+         <div id="warning">
+            <div class="alert alert-danger" role="alert">You need to be logged in !!</div>
+         </div>
+         <div id="form-container" class="row justify-content-center">
+            <div class="col-md-8">
+               <div class="form-container animate__animated animate__fadeInUp">
+                  <h1 class="title mb-4">Write an Article</h1>
+                  <form id="form">
+                     <div class="mb-4">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title"
+                           placeholder="Enter the article title" required>
+                     </div>
+                     <div class="mb-4 tags-input">
+                        <label for="tags" class="form-label">Tags</label>
+                        <input type="text" class="form-control" id="tags" name="tags"
+                           placeholder="Add tags to your article">
+                        <div class="tags-list"></div>
+                     </div>
+                     <div class="mb-4">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea class="form-control" id="content" name="content" rows="10"
+                           placeholder="Write your article content" required></textarea>
+                     </div>
+                     <div class="mb-4">
+                        <label for="image" class="form-label">Cover Image</label>
+                        <input type="hidden" role="uploadcare-uploader" name="image" id="image" />
+                        <div class="image-preview">
+                           <img src="" alt="" style="max-width: 300px;max-height: 300px;"/>
+                        </div>
+                     </div>
+                     <div class="text-center submit-btn">
+                        <button type="submit" class="btn btn-primary">Publish Article</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </main>
+   <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="../assets/popper/popper.min.js"></script>
+</body>
+
+</html>
