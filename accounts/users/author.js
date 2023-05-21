@@ -1,7 +1,6 @@
-
 function sessionCheck() {
    $.ajax({
-      url: "./accounts/auth/sessionCheck.php",
+      url: "../auth/sessionCheck.php",
       type: "GET",
       success: function (data) {
          data = JSON.parse(data);
@@ -19,10 +18,11 @@ function sessionCheck() {
       },
    });
 }
+
 function onClickLogout(event) {
    event.preventDefault();
    $.ajax({
-      url: "./accounts/auth/logout.php",
+      url: "../auth/logout.php",
       type: "GET",
       success: function (data) {
          data = JSON.parse(data);
@@ -35,15 +35,16 @@ function onClickLogout(event) {
 }
 
 function onClickCard(article_id, username) {
+   console.log(article_id, "  ", username)
    localStorage.setItem("article_id", article_id);
    localStorage.setItem("username", username);
-   window.location.href = "./accounts/articles/article.html";
+   window.location.href = "../articles/article.html";
 }
 
 function onLike(article_id, likes) {
    console.log(article_id, "  ", likes)
    $.ajax({
-      url: "./accounts/articles/like-article.php",
+      url: "../articles/like-article.php",
       type: "PUT",
       data: {
          article_id: article_id
@@ -66,30 +67,30 @@ function onLike(article_id, likes) {
 
 function getFeaturedArticles() {
    $.ajax({
-      url: "./accounts/articles/get-articles.php",
+      url: "./get-users.php",
       type: "GET",
       data: {
          order: "views",
+         username: localStorage.getItem("author"),
          OFFSET: 0,
          LIMIT: 6,
       },
       success: function (data) {
-         console.log(data.articles);
-         (data.articles).forEach(article => {
-            console.log(article.profile_image)
+         console.log(data);
+         (data.user.articles).forEach(article => {
+            console.log(data.user)
+            let username = data.user.username;
+            document.getElementById("Name").innerHTML = username;
+            document.getElementById("fullName").innerHTML = data.user.full_name;
+            $("#instagram").attr("href", data.user.instagram);
+            $("#twitter").attr("href", data.user.twitter);
+            $("#facebook").attr("href", data.user.facebook);
+            $("#github").attr("href", data.user.github);
+            $("#linkedin").attr("href", data.user.linkedin);
+
             document.getElementById("articles-row").innerHTML += `
             <div class="post-card">
-               <div class="avatar">
-                  <img class="avatar" src="${(function () {
-                  if (article.profile_image != null) {
-                     return article.profile_image
-                  } else {
-                     return "https://avatars.githubusercontent.com/u/47269261?v=4"
-                  }
-               })()
-               }" alt="">
-               </div>
-               <a class="post-title" onclick="onClickCard(${article.article_id},  '${article.username}')" href="#" title="${article.title}">${(() => {
+               <a class="post-title" onclick="onClickCard(${article.article_id},  '${username}')" href="#" title="${article.title}">${(() => {
                   if (article.title.length > 45) {
                      return (article.title).slice(0, 45) + "..."
                   } else {
@@ -99,10 +100,10 @@ function getFeaturedArticles() {
                }</a>
                <span class="datetime">#Rust</span>
                <div class="image-preview"
-                  onclick="onClickCard(${article.article_id},  '${article.username}')"
+                  onclick="onClickCard(${article.article_id},  '${username}')"
                   style="background-image: url(${(function () {
-                  if (article.hasOwnProperty("article_image")) {
-                     return article.article_image
+                  if (article.hasOwnProperty("url")) {
+                     return article.url
                   } else {
 
                      return "background-image: linear-gradient(to top left, blueviolet, rgb(73, 31, 112)); "
@@ -132,6 +133,7 @@ function getFeaturedArticles() {
 }
 
 function onReady() {
+   console.log(localStorage.getItem("author"))
    sessionCheck();
    getFeaturedArticles();
 }

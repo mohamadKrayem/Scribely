@@ -87,3 +87,6 @@ nav {
    border-radius: 50%;
 }
 
+.heart{
+   z-index: 999;
+}

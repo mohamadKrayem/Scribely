@@ -185,6 +185,23 @@ class GetArticleHandler
       return $this->response;
    }
 
+   public function likeArticle()
+   {
+      $stmt = $this->db->prepare("
+      UPDATE Article SET `likes`=(`likes`+1) WHERE `article_id`=?;
+      ");
+      $stmt->bind_param("i", $this->article_id);
+      $stmt->execute();
+      $stmt->close();
+      $this->response = array(
+         "success" => true,
+         "case" => "success",
+         "message" => "Article liked!",
+         "code" => 200,
+      );
+      return $this->response;
+   }
+
    public function getResponse()
    {
       return $this->response;

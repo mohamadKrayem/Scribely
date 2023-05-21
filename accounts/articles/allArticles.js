@@ -1,7 +1,6 @@
-
 function sessionCheck() {
    $.ajax({
-      url: "./accounts/auth/sessionCheck.php",
+      url: "../auth/sessionCheck.php",
       type: "GET",
       success: function (data) {
          data = JSON.parse(data);
@@ -22,7 +21,7 @@ function sessionCheck() {
 function onClickLogout(event) {
    event.preventDefault();
    $.ajax({
-      url: "./accounts/auth/logout.php",
+      url: "../auth/logout.php",
       type: "GET",
       success: function (data) {
          data = JSON.parse(data);
@@ -37,13 +36,13 @@ function onClickLogout(event) {
 function onClickCard(article_id, username) {
    localStorage.setItem("article_id", article_id);
    localStorage.setItem("username", username);
-   window.location.href = "./accounts/articles/article.html";
+   window.location.href = "./article.html";
 }
 
 function onLike(article_id, likes) {
    console.log(article_id, "  ", likes)
    $.ajax({
-      url: "./accounts/articles/like-article.php",
+      url: "./like-article.php",
       type: "PUT",
       data: {
          article_id: article_id
@@ -66,7 +65,7 @@ function onLike(article_id, likes) {
 
 function getFeaturedArticles() {
    $.ajax({
-      url: "./accounts/articles/get-articles.php",
+      url: "./get-articles.php",
       type: "GET",
       data: {
          order: "views",
@@ -79,15 +78,19 @@ function getFeaturedArticles() {
             console.log(article.profile_image)
             document.getElementById("articles-row").innerHTML += `
             <div class="post-card">
-               <div class="avatar">
-                  <img class="avatar" src="${(function () {
-                  if (article.profile_image != null) {
-                     return article.profile_image
-                  } else {
-                     return "https://avatars.githubusercontent.com/u/47269261?v=4"
-                  }
-               })()
-               }" alt="">
+               <div class="avatarInfo d-flex align-items-center">
+                  <div class="avatar">
+                     <img class="avatar" src="${(
+                        function () {
+                           if (article.profile_image != null) {
+                              return article.profile_image
+                           } else {
+                              return "https://avatars.githubusercontent.com/u/47269261?v=4"
+                           }
+                        })()
+                     }" alt="">
+                  </div>
+                  <div class="username">${article.username}</div>
                </div>
                <a class="post-title" onclick="onClickCard(${article.article_id},  '${article.username}')" href="#" title="${article.title}">${(() => {
                   if (article.title.length > 45) {

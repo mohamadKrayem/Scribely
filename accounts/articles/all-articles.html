@@ -1,21 +1,3 @@
-<?php
-include '../../php/session.php';
-include './GetArticleHandler.php';
-include '../../php/db.php';
-
-   if($_SERVER["REQUEST_METHOD"] == "GET")  {
-      $article_id = $_GET['article_id'];
-      $username = $_GET['username'];
-      $order = $_GET['order'];
-      $OFFSET = $_GET['OFFSET'];
-      $LIMIT = $_GET['LIMIT'];
-
-      $getArticleHandler = new GetArticleHandler($mysqli, $article_id, $username, $order, $OFFSET, $LIMIT);
-      $message = $getArticleHandler->getArticles();
-      print_r($message);
-   }
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,43 +16,8 @@ include '../../php/db.php';
    <script src="../../assets/jquery/jquery-3.3.1.min.js"></script>
    <script src="../../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
    <script src="../../assets/popper/popper.min.js"></script>
-   <script>
-      function sessionCheck() {
-         $.ajax({
-            url: "../auth/sessionCheck.php",
-            type: "GET",
-            success: function (data) {
-               data = JSON.parse(data);
-               $(".sessionEmpty").hide();
-               $(".sessionFull").show();
-               $(".sessionFull").append(`<span>${data.username}</span>`);
-               $("#logout").show();
-               $("#logout").click(onClickLogout);
-            },
-            error: function (data) {
-               $(".sessionEmpty").show();
-               $(".sessionFull").hide();
-               console.log("should be deleted");
-               $("#logout").hide();
-            },
-         });
-      }
-      function onClickLogout(event) {
-         event.preventDefault();
-         $.ajax({
-            url: "../auth/logout.php",
-            type: "GET",
-            success: function (data) {
-               data = JSON.parse(data);
-               console.log(data.success);
-               if (data.success == true) {
-                  location.reload();
-               }
-            },
-         });
-      }
-      $(document).ready(sessionCheck);
-   </script>
+   <link rel="stylesheet" href="../../assets/m-style/article.css">
+   <script src="./allArticles.js"></script>
 </head>
 
 <body class="">
@@ -94,11 +41,11 @@ include '../../php/db.php';
                      <a class="nav-link" href="../new-article.html">Write Article</a>
                   </li>
                   <li class="nav-item px-3">
-                     <a class="nav-link" href="#">Authors</a>
+                     <a class="nav-link" href="../users/authors.html">Authors</a>
                   </li>
                   <li class="nav-item pr-3 pl-1">
                      <a class="nav-link sessionEmpty" href="../signup.html">Login/Register</a>
-                     <a class="nav-link sessionFull" href="#"><i class="bi bi-person-fill"></i></a>
+                     <a class="nav-link sessionFull" href="../profile.html"><i class="bi bi-person-fill"></i></a>
                   </li>
                   <li class="nav-item pr-3 pl-1" id="logout">
                      <a class="nav-link" href="#"><i class="bi bi-box-arrow-right"></i></a>
@@ -109,8 +56,17 @@ include '../../php/db.php';
       </nav>
    </header>
 
-   <main style="margin-top: 100px;">
+   <section class="featured-articles mt-5 py-5">
+      <div class="container">
+         <h1 class="display-4 fs-1 fw-bold mb-4 title">
+            <h2 class="display-4 fs-1 fw-bold mb-4 title text-center">Articles</h2>
+            <div class="
+         row justify-content-center align-items-center flex-column-reverse flex-md-row flex-wrap mb-5 mt-5 px-5 px-md-0 px-lg-5 px-xl-0 px-xxl-5 
+         " id="articles-row">
+            </div>
+      </div>
+   </section>
 
-   </main>
 </body>
+
 </html>

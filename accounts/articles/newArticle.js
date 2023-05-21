@@ -1,4 +1,5 @@
 
+UPLOADCARE_PUBLIC_KEY = '4b869e25736b8bb1e44c';
 function sessionCheck() {
    $.ajax({
       url: "auth/sessionCheck.php",
