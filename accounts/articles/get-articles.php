@@ -69,13 +69,57 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
    //    INNER JOIN Image ON Article.image = Image.image_id)
    //    ORDER BY Article.created_at DESC LIMIT 6 OFFSET 0
    //    ");
-
-
    $getArticleHandler = new GetArticleHandler($mysqli, $_GET['article_id'], $_GET['username'], $_GET['order'], $_GET['OFFSET'], $_GET['LIMIT']);
    $response = $getArticleHandler->getArticles();
 
    http_response_code(200);
    header('Content-Type: application/json');
    echo json_encode($response);
+   exit;
+   if (isset($_GET['article_id']) && isset($_GET['username']) && isset($_GET['order']) && isset($_GET['OFFSET']) && isset($_GET['LIMIT'])) {
+
+      $getArticleHandler = new GetArticleHandler($mysqli, $_GET['article_id'], $_GET['username'], $_GET['order'], $_GET['OFFSET'], $_GET['LIMIT']);
+      $response = $getArticleHandler->getArticles();
+
+      http_response_code(200);
+      header('Content-Type: application/json');
+      echo json_encode($response);
+   } else if (isset($_GET['article_id']) && isset($_GET['username'])) {
+      $getArticleHandler = new GetArticleHandler($mysqli, $_GET['article_id'], $_GET['username']);
+      $response = $getArticleHandler->getArticles();
+
+      http_response_code(200);
+      header('Content-Type: application/json');
+      echo json_encode($response);
+   } else if (isset($_GET['order']) && isset($_GET['OFFSET']) && isset($_GET['LIMIT'])) {
+      $getArticleHandler = new GetArticleHandler($mysqli, null, null, $_GET['order'], $_GET['OFFSET'], $_GET['LIMIT']);
+      $response = $getArticleHandler->getArticles();
+
+      http_response_code(200);
+      header('Content-Type: application/json');
+      echo json_encode($response);
+   } else if (isset($_GET['article_id'])) {
+      $getArticleHandler = new GetArticleHandler($mysqli, $_GET['article_id']);
+      $response = $getArticleHandler->getArticles();
+
+      http_response_code(200);
+      header('Content-Type: application/json');
+      echo json_encode($response);
+   } else if (isset($_GET['username'])) {
+      $getArticleHandler = new GetArticleHandler($mysqli, null, $_GET['username']);
+      $response = $getArticleHandler->getArticles();
+
+      http_response_code(200);
+      header('Content-Type: application/json');
+      echo json_encode($response);
+   } else {
+
+      $getArticleHandler = new GetArticleHandler($mysqli, $_GET['article_id'], $_GET['username'], $_GET['order'], $_GET['OFFSET'], $_GET['LIMIT']);
+      $response = $getArticleHandler->getArticles();
+
+      http_response_code(200);
+      header('Content-Type: application/json');
+      echo json_encode($response);
+   }
    exit;
 }

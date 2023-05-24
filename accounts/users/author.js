@@ -1,4 +1,6 @@
 function sessionCheck() {
+   $("#profile_full").hide();
+   $("#profile_empty").show();
    $.ajax({
       url: "../auth/sessionCheck.php",
       type: "GET",
@@ -76,17 +78,20 @@ function getFeaturedArticles() {
          LIMIT: 6,
       },
       success: function (data) {
-         console.log(data);
+         let username = data.user.username;
+         document.getElementById("Name").innerHTML = username;
+         document.getElementById("fullName").innerHTML = data.user.full_name;
+         $("#instagram").attr("href", data.user.instagram);
+         $("#twitter").attr("href", data.user.twitter);
+         $("#facebook").attr("href", data.user.facebook);
+         $("#github").attr("href", data.user.github);
+         $("#linkedin").attr("href", data.user.linkedin);
+         if ((data.user).hasOwnProperty("profile_pic")) {
+            $("#profile_empty").hide();
+            $("#profile_full").attr("src", data.user.profile_pic);
+            $("#profile_full").show();
+         }
          (data.user.articles).forEach(article => {
-            console.log(data.user)
-            let username = data.user.username;
-            document.getElementById("Name").innerHTML = username;
-            document.getElementById("fullName").innerHTML = data.user.full_name;
-            $("#instagram").attr("href", data.user.instagram);
-            $("#twitter").attr("href", data.user.twitter);
-            $("#facebook").attr("href", data.user.facebook);
-            $("#github").attr("href", data.user.github);
-            $("#linkedin").attr("href", data.user.linkedin);
 
             document.getElementById("articles-row").innerHTML += `
             <div class="post-card">
